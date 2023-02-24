@@ -8,23 +8,16 @@ function App() {
 
   const handleLogin = async () =>{
 
-    const tokenResponse = await fetch(
+    const url = 
       `https://api.instagram.com/oauth/authorize?client_id=${import.meta.env.VITE_CLIENT_ID}
       &redirect_uri=${import.meta.env.VITE_REDIRECT_URI}
       &scope=user_profile,user_media
-      &response_type=code`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        }
-      }
-    );
-    const tokenData = await tokenResponse.json();
-    setIsLoggedIn(true);
+      &response_type=code`
+    
+
+      window.location.replace(url)
 
     
-    console.log(tokenData);
   };
   
   return (
