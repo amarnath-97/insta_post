@@ -35,11 +35,7 @@ function App() {
   }, []);
 
   const handleLogin = async () => {
-    const url = `https://api.instagram.com/oauth/authorize?client_id=${
-      import.meta.env.VITE_CLIENT_ID
-    }&redirect_uri=${
-      import.meta.env.VITE_REDIRECT_URI
-    }&scope=user_profile,user_media&response_type=code`;
+    const url = `https://api.instagram.com/oauth/authorize?client_id=${import.meta.env.VITE_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
 
     console.log(url);
     window.location.replace(url);
