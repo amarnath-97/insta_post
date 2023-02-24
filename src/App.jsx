@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
+import ImageGallery from "./components/ImageGallery";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,7 +26,8 @@ function App() {
           .then((r) => r.json())
           .then((r) => {
 
-            setUserPhotos(r.data)
+            setUserPhotos(r.data);
+            isLoggedIn(true);
             console.log(r);
           });
       })
@@ -56,6 +58,9 @@ function App() {
           </button>
         </div>
       )}
+
+        <ImageGallery images={userPhotos}/>
+      
     </div>
   );
 }
