@@ -15,6 +15,7 @@ function App() {
       &response_type=code`,
       {
         method: "POST",
+        mode: 'cors',
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         }
@@ -29,7 +30,7 @@ function App() {
   
   return (
     <div className="w-full h-screen">
-      <h1 className="p-3 text-center text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 to-yellow-200 text-lg">
+      <h1 className="p-3 text-center text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-lg">
         Welcome To Insta-Post
       </h1>
       {!isLoggedIn && <div className="w-full flex justify-center">
