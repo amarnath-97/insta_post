@@ -15,7 +15,6 @@ function App() {
       &response_type=code`,
       {
         method: "POST",
-        mode: 'cors',
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         }
