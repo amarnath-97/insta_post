@@ -33,7 +33,7 @@ function App() {
         Welcome To Insta-Post
       </h1>
       {!isLoggedIn && <div className="w-full flex justify-center">
-        <button className="p-1 text-white bg-blue-400 m-3 rounded-sm">
+        <button className="p-1 text-white bg-blue-400 m-3 rounded-sm" onClick={()=> handleLogin()}>
           Login with Instagram
         </button>
       </div>}
