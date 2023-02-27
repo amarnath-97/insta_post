@@ -22,7 +22,7 @@ function App() {
             .then((r) => r.json())
             .then((r) => {
               setUserPosts(r.data);
-              isLoggedIn(true);
+              setIsLoggedIn(true);
             });
         });
     }
