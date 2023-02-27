@@ -1,12 +1,12 @@
 import React from "react";
-import Image from "./Image";
+import Post from "./Post";
 
-const ImageGallery = ({images}) => {
+const PostGallery = ({images}) => {
   return <div className="image-gallery w-[80%] h-auto mx-auto my-0 grid grid-cols-4 justify-center gap-2">
     {images.map(image => (
-        <Image image={image}/>
+        <Post image={image}/>
     ))}
   </div>;
 };
 
-export default ImageGallery;
+export default PostGallery;

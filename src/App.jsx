@@ -1,45 +1,40 @@
 import { useState, useEffect } from "react";
 
 import "./App.css";
-import ImageGallery from "./components/ImageGallery";
+import PostGallery from "./components/PostGallery";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userPhotos, setUserPhotos] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {
-    console.log(location.href);
-
     if (location.href.includes("code")) {
       const params = Object.fromEntries(
         new URL(window.location.href).searchParams
       );
 
-      fetch(
-        'https://insta-photos.onrender.com' + '?code=' + params.code
-      ).then((r) => r.json())
-      .then((r) => {
+      fetch("https://insta-photos.onrender.com" + "?code=" + params.code)
+        .then((r) => r.json())
+        .then((r) => {
+          const url = `https://graph.instagram.com/me/media?fields=id,media_url,caption,permalink&access_token=${r.access_token}`;
 
-        const url = `https://graph.instagram.com/me/media?fields=id,media_url,caption,permalink&access_token=${r.access_token}`;
-
-        fetch(url)
-          .then((r) => r.json())
-          .then((r) => {
-
-            setUserPhotos(r.data);
-            isLoggedIn(true);
-            console.log(r);
-          });
-      })
-
-     
+          fetch(url)
+            .then((r) => r.json())
+            .then((r) => {
+              setUserPosts(r.data);
+              isLoggedIn(true);
+            });
+        });
     }
   }, []);
 
   const handleLogin = async () => {
-    const url = `https://api.instagram.com/oauth/authorize?client_id=${import.meta.env.VITE_CLIENT_ID}&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&scope=user_profile,user_media&response_type=code`;
+    const url = `https://api.instagram.com/oauth/authorize?client_id=${
+      import.meta.env.VITE_CLIENT_ID
+    }&redirect_uri=${
+      import.meta.env.VITE_REDIRECT_URI
+    }&scope=user_profile,user_media&response_type=code`;
 
-    console.log(url);
     window.location.replace(url);
   };
 
@@ -59,8 +54,7 @@ function App() {
         </div>
       )}
 
-        <ImageGallery images={userPhotos}/>
-      
+      <PostGallery images={userPosts} />
     </div>
   );
 }
